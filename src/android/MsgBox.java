@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
+
 import org.apache.cordova.LOG;
 
 import java.util.HashMap;
@@ -106,13 +107,17 @@ public class MsgBox {
      *
      * @param errorDialogOnClick
      */
-    public Dialog showErrorDialog(OnClickListener errorDialogOnClick) {
+    public Dialog showErrorDialog(String msg, OnClickListener errorDialogOnClick) {
         if (this.errorDialog == null) {
             LOG.d(TAG, "initErrorDialog");
             // 构造对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
             builder.setTitle(msgHelper.getString(MsgHelper.UPDATE_ERROR_TITLE));
-            builder.setMessage(msgHelper.getString(MsgHelper.UPDATE_ERROR_MESSAGE));
+            if (msg != null && msg.length() > 0) {
+                builder.setMessage(msg);
+            } else {
+                builder.setMessage(msgHelper.getString(MsgHelper.UPDATE_ERROR_MESSAGE));
+            }
             // 更新
             builder.setPositiveButton(msgHelper.getString(MsgHelper.UPDATE_ERROR_YES_BTN), errorDialogOnClick);
             errorDialog = builder.create();

@@ -6,12 +6,13 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.widget.ProgressBar;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.LOG;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class UpdateManager {
             switch (msg.what) {
                 case Constants.NETWORK_ERROR:
                     //暂时隐藏错误
-                    //msgBox.showErrorDialog(errorDialogOnClick);
+//                    msgBox.showErrorDialog(errorDialogOnClick);
                     callbackContext.error(Utils.makeJSON(Constants.NETWORK_ERROR, "network error"));
                     break;
                 case Constants.VERSION_COMPARE_START:
@@ -113,6 +114,9 @@ public class UpdateManager {
                     break;
                 case Constants.REMOTE_FILE_NOT_FOUND:
                     callbackContext.error(Utils.makeJSON(Constants.REMOTE_FILE_NOT_FOUND, "remote file not found"));
+                    break;
+                case Constants.UNKNOWN_ERROR:
+                    msgBox.showErrorDialog(msg.obj.toString(), errorDialogOnClick);
                     break;
                 default:
                     callbackContext.error(Utils.makeJSON(Constants.UNKNOWN_ERROR, "unknown error"));

@@ -1,9 +1,7 @@
 package com.vaenow.appupdate.android;
 
-import org.apache.cordova.BuildHelper;
-
-import android.app.AlertDialog;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,11 +12,14 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
+
 import androidx.core.content.FileProvider;
+
+import org.apache.cordova.BuildHelper;
+import org.apache.cordova.LOG;
+
 import java.io.File;
 import java.util.HashMap;
-
-import org.apache.cordova.LOG;
 
 /**
  * Created by LuoWen on 2015/12/14.
